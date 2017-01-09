@@ -1,4 +1,6 @@
 class User
+  attr_reader :user, :order_total, :payment_total, :balance
+
   def initialize(name)
     @user = name
     @order_total = 0
