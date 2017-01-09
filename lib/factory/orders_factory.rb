@@ -1,4 +1,5 @@
 require_relative '../model/order'
+require_relative '../model/drink'
 require_relative 'factory'
 
 class OrdersFactory < Factory

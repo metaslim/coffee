@@ -14,20 +14,20 @@ class TestMenu< Minitest::Test
     assert_equal 16, menu.size
   end
 
-  def test_latte_small_has_correct_price
-    assert_equal 3.50, menu["latte_small"].price
+  def test_small_latte_has_correct_price
+    assert_equal 3.50, menu["small_latte"].price
   end
 
-  def test_latte_small_has_correct_name
-    assert_equal "latte", menu["latte_small"].drink.drink_name
+  def test_small_latte_has_correct_name
+    assert_equal "latte", menu["small_latte"].drink.drink_name
   end
 
-  def test_latte_small_has_correct_size
-    assert_equal "small", menu["latte_small"].drink.size
+  def test_small_latte_has_correct_size
+    assert_equal "small", menu["small_latte"].drink.size
   end
 
-  def test_item_is_payment
-    assert_instance_of MenuItem, menu["latte_small"]
+  def test_item_is_menu_item
+    assert_instance_of MenuItem, menu["small_latte"]
   end
 
   def test_menu_with_wrong_json
