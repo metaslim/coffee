@@ -1,7 +1,7 @@
 require_relative 'json_parser'
 require_relative 'drink'
 
-class DrinksFactory
+class Menu
   class << self
     @@parser = JsonParser
 

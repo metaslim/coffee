@@ -1,9 +1,9 @@
 class Payment
-  attr_reader :user, :total_amount
+  attr_reader :user, :amount
 
   def initialize(user, amount)
     @user = user
-    @total_amount += amount
+    @amount = amount
   end
 
 end
