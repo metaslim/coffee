@@ -6,26 +6,24 @@ class OrdersRecord
     @@parser = JsonParser
 
     def create(data)
-      payments = {}
-      payments_array = parse(data)
+      orders = {}
+      orders_array = parse(data)
 
-      payments_array.each do |payment|
-        user = payment['user']
-        amount = payment['amount'].to_i
+      orders_array.each do |order|
+        user = order['user']
+        drink = order['drink']
+        size = order['size']
 
-        payments[user] = {} if payments[user].nil?
 
-        payments[user]["payment"] = [] if payments[user]["payment"].nil?
-        payments[user]["payment"] << Payment.new(
+        orders[user] = [] if orders[user].nil?
+        orders[user] << Order.new(
           user,
-          amount
+          drink,
+          size
         )
-
-        payments[user]["total_amount"] = 0if payments[user]["total_amount"].nil?
-        payments[user]["total_amount"] += amount
       end
 
-      payments
+      orders
     end
 
     private
