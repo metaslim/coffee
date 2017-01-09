@@ -13,16 +13,16 @@ class PaymentsRecord
         user = payment['user']
         amount = payment['amount'].to_i
 
-        payments[user] = {} if payments[user].nil?
+        # payments[user] = {} if payments[user].nil?
 
-        payments[user]["payment"] = [] if payments[user]["payment"].nil?
-        payments[user]["payment"] << Payment.new(
+        payments[user] = [] if payments[user].nil?
+        payments[user] << Payment.new(
           user,
           amount
         )
 
-        payments[user]["total_amount"] = 0if payments[user]["total_amount"].nil?
-        payments[user]["total_amount"] += amount
+        #payments[user]["total_amount"] = 0 if payments[user]["total_amount"].nil?
+        #payments[user]["total_amount"] += amount
       end
 
       payments

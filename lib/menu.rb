@@ -1,36 +1,47 @@
 require_relative 'json_parser'
 require_relative 'drink'
+require_relative 'menu_item'
 
 class Menu
+  attr_reader :parser, :menu
+
   class << self
-    @@parser = JsonParser
+    def create_from(data)
+      new(data)
+    end
+  end
 
-    def create(data)
-      drinks = {}
-      drinks_array = parse(data)
+  PARSER = JsonParser
 
-      drinks_array.each do |drink|
-        drink_name = drink['drink_name']
-        drinks[drink_name] = {}
+  def initialize(data)
+    @menu = {}
+    drinks_array = parse(data)
 
-        drink['prices'].keys.each do |size|
-          price = drink['prices'][size]
+    drinks_array.each do |drink|
+      drink_name = drink['drink_name']
+      @menu[drink_name] = {}
 
-          drinks[drink_name][size] = Drink.new(
-            drink_name,
-            size,
-            price
-          )
-        end
+      drink['prices'].keys.each do |size|
+        price = drink['prices'][size]
+        offered_drink = Drink.new(drink_name, size)
+
+        @menu[offered_drink.id] = MenuItem.new(
+          offered_drink,
+          price
+        )
       end
-
-      drinks
     end
 
-    private
-    def parse(data)
-      @@parser.parse(data)
-    end
+    @menu
+  end
 
+  def how_much_for?(order)
+    drink = order.drink
+    menu[drink.id].price
+  end
+
+  private
+  def parse(data)
+    PARSER.parse(data)
   end
 end

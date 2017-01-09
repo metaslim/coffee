@@ -11,15 +11,20 @@ class OrdersRecord
 
       orders_array.each do |order|
         user = order['user']
-        drink = order['drink']
-        size = order['size']
+        drink_name = order['drink']
+        drink_size = order['size']
 
 
         orders[user] = [] if orders[user].nil?
+
+        drink = Drink.new(
+          drink_name,
+          drink_size
+        )
+
         orders[user] << Order.new(
           user,
-          drink,
-          size
+          drink
         )
       end
 

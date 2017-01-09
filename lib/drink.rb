@@ -1,10 +1,12 @@
-class Drink
-  attr_reader :drink_name, :price, :size
+require 'digest'
 
-  def initialize(drink_name, size, price)
+class Drink
+  attr_reader :id, :drink_name, :price
+
+  def initialize(drink_name, size)
+    @id = "#{drink_name}_#{size}"
     @drink_name = drink_name
     @size = size
-    @price = price
   end
 
 end

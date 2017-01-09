@@ -1,9 +1,8 @@
 class Order
-  attr_reader :user, :drink, :size
+  attr_reader :user, :drink
 
-  def initialize(user, drink, size)
+  def initialize(user, drink)
     @user = user
     @drink = drink
-    @size = size
   end
 end
