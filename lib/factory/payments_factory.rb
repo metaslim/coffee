@@ -19,7 +19,6 @@ class PaymentsFactory < Factory
           amount
         )
       end
-
       payments
     end
   end

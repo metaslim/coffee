@@ -4,16 +4,18 @@ require_relative 'model/user'
 class CoffeeApp
 
   class << self
+
     def call(prices_json, orders_json, payments_json)
       menu = Menu.create_from(prices_json)
       orders = OrdersFactory.create_from(orders_json)
       payments = PaymentsFactory.create_from(payments_json)
 
-      get_customer_accounts(menu, orders, payments).to_json
+      get_customer_taps(menu, orders, payments).to_json
     end
 
     private
-    def get_customer_accounts(menu, orders, payments)
+
+    def get_customer_taps(menu, orders, payments)
       customers = []
       orders.keys.each do |customer|
         user = User.new(customer)

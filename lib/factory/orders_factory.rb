@@ -20,7 +20,6 @@ class OrdersFactory < Factory
           Drink.new(drink_name, drink_size)
         )
       end
-
       orders
     end
   end

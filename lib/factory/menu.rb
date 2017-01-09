@@ -23,7 +23,6 @@ class Menu < Factory
           )
         end
       end
-
       menu
     end
   end

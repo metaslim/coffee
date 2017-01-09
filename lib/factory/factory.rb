@@ -2,6 +2,7 @@ require 'json'
 
 class Factory
   class << self
+
     def create_from(json)
       generate(json)
     end
@@ -17,8 +18,6 @@ class Factory
       items_array.each do |item|
         yield(item) if block_given?
       end
-
     end
   end
-
 end
