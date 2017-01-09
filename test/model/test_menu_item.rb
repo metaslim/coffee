@@ -1,15 +1,15 @@
 require "minitest/autorun"
 require_relative '../../lib/model/menu_item'
-require_relative 'drink_maker'
+require_relative 'fake_maker'
 
 class TestMenuItem < Minitest::Test
-  attr_reader :menu_item, :drink, :drink_name, :size, :price
+  attr_reader :menu_item, :drink, :price
 
   def setup
-    @drink_name = "mocha"
-    @size = "large"
+    drink_name = "mocha"
+    size = "large"
     @price = 3.50
-    @drink = DrinkMaker.create(drink_name, size)
+    @drink = FakeMaker.create_drink(drink_name, size)
     @menu_item = MenuItem.new(drink, price)
   end
 

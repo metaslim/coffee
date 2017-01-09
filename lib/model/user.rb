@@ -19,7 +19,7 @@ class User
   end
 
   def update_balance
-    @balance = (@order_total - @payment_total)
+    @balance = (order_total - payment_total)
   end
 
   def to_hash
@@ -28,8 +28,6 @@ class User
       hash
     end
   end
-
-  private
 
   def get_price_from(menu, order)
     menu_item = order.drink
