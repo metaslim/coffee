@@ -14,7 +14,7 @@ class Menu < Factory
         drink_name = drink['drink_name']
 
         drink['prices'].keys.each do |size|
-          price = drink['prices'][size]
+          price = drink['prices'][size].to_f
           offered_drink = Drink.new(drink_name, size)
 
           menu[offered_drink.id] = MenuItem.new(

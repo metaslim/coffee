@@ -29,12 +29,16 @@ class CoffeeApp
     end
 
     def calculate_orders(user, menu, orders)
+      return if orders.nil?
+
       orders.each do |order|
         user.make_order_from(menu, order)
       end
     end
 
     def calculate_payments(user, payments)
+      return if payments.nil?
+
       payments.each do |payment|
         user.make_payment_of(payment.amount)
       end

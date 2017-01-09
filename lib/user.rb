@@ -8,10 +8,12 @@ class User
 
   def make_order_from(menu, order)
     @order_total += get_price_from(menu, order)
+    @order_total = @order_total.round(2)
   end
 
   def make_payment_of(amount)
     @payment_total += amount
+    @payment_total = @payment_total.round(2)
   end
 
   def update_balance

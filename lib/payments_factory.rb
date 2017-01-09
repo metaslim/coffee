@@ -11,7 +11,7 @@ class PaymentsFactory < Factory
 
       parse(json) do |payment|
         user = payment['user']
-        amount = payment['amount'].to_i
+        amount = payment['amount'].to_f
 
         payments[user] = [] if payments[user].nil?
         payments[user] << Payment.new(
