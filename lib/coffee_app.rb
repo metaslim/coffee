@@ -10,8 +10,8 @@ class CoffeeApp
   class << self
     def call(prices_json, orders_json, payments_json)
       menu = Menu.create_from(prices_json)
-      orders = OrdersRecord.create(orders_json)
-      payments = PaymentsRecord.create(payments_json)
+      orders = OrdersRecord.create_from(orders_json)
+      payments = PaymentsRecord.create_from(payments_json)
       customers = {}
 
       orders.keys.each do |customer|

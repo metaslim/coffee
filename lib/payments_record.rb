@@ -2,36 +2,37 @@ require_relative 'json_parser'
 require_relative 'payment'
 
 class PaymentsRecord
+  attr_reader :payments
+
   class << self
-    @@parser = JsonParser
+    def create_from(data)
+      new(data).payments
+    end
+  end
 
-    def create(data)
-      payments = {}
-      payments_array = parse(data)
+  PARSER = JsonParser
 
-      payments_array.each do |payment|
-        user = payment['user']
-        amount = payment['amount'].to_i
+  def initialize(data)
+    @payments = {}
+    payments_array = parse(data)
 
-        # payments[user] = {} if payments[user].nil?
+    payments_array.each do |payment|
+      user = payment['user']
+      amount = payment['amount'].to_i
 
-        payments[user] = [] if payments[user].nil?
-        payments[user] << Payment.new(
-          user,
-          amount
-        )
 
-        #payments[user]["total_amount"] = 0 if payments[user]["total_amount"].nil?
-        #payments[user]["total_amount"] += amount
-      end
-
-      payments
+      @payments[user] = [] if @payments[user].nil?
+      @payments[user] << Payment.new(
+        user,
+        amount
+      )
     end
 
-    private
-    def parse(data)
-      @@parser.parse(data)
-    end
+    self
+  end
 
+  private
+  def parse(data)
+    PARSER.parse(data)
   end
 end
