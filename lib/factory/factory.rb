@@ -9,7 +9,7 @@ class Factory
     private
 
     def generate(json)
-      NotImplementedError
+      raise NotImplementedError
     end
 
     def parse(json)

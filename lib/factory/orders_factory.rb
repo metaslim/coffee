@@ -1,4 +1,4 @@
-require_relative 'order'
+require_relative '../model/order'
 require_relative 'factory'
 
 class OrdersFactory < Factory

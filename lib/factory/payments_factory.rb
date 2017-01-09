@@ -1,4 +1,4 @@
-require_relative 'payment'
+require_relative '../model/payment'
 require_relative 'factory'
 
 class PaymentsFactory < Factory

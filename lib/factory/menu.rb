@@ -1,5 +1,5 @@
-require_relative 'drink'
-require_relative 'menu_item'
+require_relative '../model/drink'
+require_relative '../model/menu_item'
 require_relative 'factory'
 
 class Menu < Factory

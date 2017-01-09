@@ -1,5 +1,5 @@
-require_relative 'factory_packs'
-require_relative 'user'
+require_relative 'factory/factory_packs'
+require_relative 'model/user'
 
 class CoffeeApp
 
