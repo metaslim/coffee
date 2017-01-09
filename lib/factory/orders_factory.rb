@@ -1,5 +1,6 @@
 require_relative '../model/order'
 require_relative '../model/drink'
+require_relative '../model/user'
 require_relative 'factory'
 
 class OrdersFactory < Factory
@@ -17,7 +18,7 @@ class OrdersFactory < Factory
 
         orders[user] = [] if orders[user].nil?
         orders[user] << Order.new(
-          user,
+          User.new(user),
           Drink.new(drink_name, drink_size)
         )
       end

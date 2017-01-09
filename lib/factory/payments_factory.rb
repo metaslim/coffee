@@ -1,4 +1,5 @@
 require_relative '../model/payment'
+require_relative '../model/user'
 require_relative 'factory'
 
 class PaymentsFactory < Factory
@@ -15,7 +16,7 @@ class PaymentsFactory < Factory
 
         payments[user] = [] if payments[user].nil?
         payments[user] << Payment.new(
-          user,
+          User.new(user),
           amount
         )
       end
