@@ -1,26 +1,34 @@
 class User
-  attr_reader :name, :menu, :payment_total, :order_total
-
   def initialize(name)
-    @name = name
+    @user = name
     @order_total = 0
     @payment_total = 0
     @balance = 0
   end
 
-  def read_menu(menu)
-    @menu = menu
+  def make_order_from(menu, order)
+    @order_total += get_price_from(menu, order)
   end
 
-  def make_order(order)
-    @order_total += menu.how_much_for?(order)
+  def make_payment_of(amount)
+    @payment_total += amount
   end
 
-  def make_payment(payment)
-    @payment_total += payment.amount
+  def update_balance
+    @balance = (@order_total - @payment_total)
   end
 
-  def balance
-    order_total - payment_total
+  def to_hash
+    instance_variables.inject({}) do |hash, var|
+      hash[var.to_s.delete("@")] = instance_variable_get(var)
+      hash
+    end
+  end
+
+  private
+
+  def get_price_from(menu, order)
+    menu_item = order.drink
+    menu[menu_item.id].price
   end
 end

@@ -5,5 +5,4 @@ class MenuItem
     @drink = drink
     @price = price
   end
-
 end

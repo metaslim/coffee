@@ -1,5 +1,3 @@
-require 'digest'
-
 class Drink
   attr_reader :id, :drink_name, :price
 
@@ -8,5 +6,4 @@ class Drink
     @drink_name = drink_name
     @size = size
   end
-
 end

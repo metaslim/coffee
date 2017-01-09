@@ -1,45 +1,30 @@
-require_relative 'json_parser'
 require_relative 'drink'
 require_relative 'menu_item'
+require_relative 'factory'
 
-class Menu
+class Menu < Factory
   class << self
-    def create_from(data)
-      new(data)
-    end
-  end
 
-  PARSER = JsonParser
+    private
 
-  def initialize(data)
-    @@menu = {}
-    drinks_array = parse(data)
+    def generate(json)
+      menu = {}
 
-    drinks_array.each do |drink|
-      drink_name = drink['drink_name']
-      @@menu[drink_name] = {}
+      parse(json) do |drink|
+        drink_name = drink['drink_name']
 
-      drink['prices'].keys.each do |size|
-        price = drink['prices'][size]
-        offered_drink = Drink.new(drink_name, size)
+        drink['prices'].keys.each do |size|
+          price = drink['prices'][size]
+          offered_drink = Drink.new(drink_name, size)
 
-        @@menu[offered_drink.id] = MenuItem.new(
-          offered_drink,
-          price
-        )
+          menu[offered_drink.id] = MenuItem.new(
+            offered_drink,
+            price
+          )
+        end
       end
+
+      menu
     end
-
-    @@menu
-  end
-
-  def how_much_for?(order)
-    drink = order.drink
-    @@menu[drink.id].price
-  end
-
-  private
-  def parse(data)
-    PARSER.parse(data)
   end
 end

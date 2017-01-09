@@ -5,5 +5,4 @@ class Payment
     @user = user
     @amount = amount
   end
-
 end

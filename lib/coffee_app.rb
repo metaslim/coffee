@@ -1,35 +1,47 @@
-require_relative 'menu.rb'
-require_relative 'payments_record.rb'
-require_relative 'orders_record.rb'
-require_relative 'user.rb'
-
-require 'pry'
+require_relative 'factory_packs'
+require_relative 'user'
 
 class CoffeeApp
 
   class << self
     def call(prices_json, orders_json, payments_json)
       menu = Menu.create_from(prices_json)
-      orders = OrdersRecord.create_from(orders_json)
-      payments = PaymentsRecord.create_from(payments_json)
-      customers = {}
+      orders = OrdersFactory.create_from(orders_json)
+      payments = PaymentsFactory.create_from(payments_json)
 
+      get_customer_accounts(menu, orders, payments).to_json
+    end
+
+    private
+    def get_customer_accounts(menu, orders, payments)
+      customers = []
       orders.keys.each do |customer|
         user = User.new(customer)
-        user.read_menu(menu)
 
-        orders[customer].each do |order|
-          user.make_order(order)
-        end
+        calculate_orders(user, menu, orders[customer])
+        calculate_payments(user, payments[customer])
+        calculate_balance(user)
 
-        payments[customer].each do |payment|
-          user.make_payment(payment)
-        end
-
-        puts "#{customer}\t#{user.balance}\t#{user.payment_total}\t#{user.order_total}"
-
-        customers[customer] = user
+        customers << user.to_hash
       end
+
+      customers
+    end
+
+    def calculate_orders(user, menu, orders)
+      orders.each do |order|
+        user.make_order_from(menu, order)
+      end
+    end
+
+    def calculate_payments(user, payments)
+      payments.each do |payment|
+        user.make_payment_of(payment.amount)
+      end
+    end
+
+    def calculate_balance(user)
+      user.update_balance
     end
   end
 end

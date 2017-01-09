@@ -16,7 +16,7 @@ task "run" do
   result_json = CoffeeApp.call(prices_json, orders_json, payments_json)
 
   # turn the JSON back into a Ruby structure
-  #user_balances = JSON.load(result_json)
+  user_balances = JSON.load(result_json)
 
   # pretty print the output
   puts "Total:"
