@@ -10,7 +10,7 @@ class UserTest < Minitest::Test
   end
 
   def test_object_constructed
-    assert_equal user_name, user.user
+    assert_equal user_name, user.name
   end
 
   def test_make_payment_of

@@ -1,8 +1,8 @@
 class User
-  attr_reader :user, :order_total, :payment_total, :balance
+  attr_reader :name, :order_total, :payment_total, :balance
 
   def initialize(name)
-    @user = name
+    @name = name
     @order_total = 0
     @payment_total = 0
     @balance = 0
@@ -24,7 +24,7 @@ class User
 
   def to_hash
     instance_variables.inject({}) do |hash, var|
-      hash[var.to_s.delete("@")] = instance_variable_get(var)
+      hash[var.to_s.delete("@").sub('name','user')] = instance_variable_get(var)
       hash
     end
   end
