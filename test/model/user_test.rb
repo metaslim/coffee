@@ -1,8 +1,7 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/model/user'
-require_relative 'fake_maker'
 
-class TestModel < Minitest::Test
+class UserTest < Minitest::Test
   attr_reader :user, :user_name
 
   def setup

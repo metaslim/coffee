@@ -1,7 +1,7 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/model/drink'
 
-class TestModel < Minitest::Test
+class DrinkTest < Minitest::Test
   attr_reader :drink, :drink_name, :size, :id
 
   def setup

@@ -1,9 +1,9 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/factory/orders_factory'
 require_relative '../../lib/model/order'
-require_relative '../json_sample'
 
-class TestOrdersFactory < Minitest::Test
+
+class OrdersFactoryTest < Minitest::Test
   attr_reader :orders
 
   def setup

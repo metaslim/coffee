@@ -1,9 +1,8 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/factory/payments_factory'
 require_relative '../../lib/model/payment'
-require_relative '../json_sample'
 
-class TestPaymentsFactory < Minitest::Test
+class PaymentsFactoryTest < Minitest::Test
   attr_reader :payments
 
   def setup

@@ -26,3 +26,15 @@ task "run" do
     puts sprintf("%-10s$%-10.2f$%-10.2f$%-10.2f", user_balance["user"], user_balance["order_total"], user_balance["payment_total"], user_balance["balance"])
   end
 end
+
+require 'rake/testtask'
+
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'test'
+
+  test.test_files = FileList['test/**/*_test.rb']
+  test.verbose = true
+end
+
+desc "Run Tests"
+task :default => :test

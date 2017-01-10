@@ -1,8 +1,7 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/model/payment'
-require_relative 'fake_maker'
 
-class TestPayment < Minitest::Test
+class PaymentTest < Minitest::Test
   attr_reader :payment, :user, :amount
 
   def setup

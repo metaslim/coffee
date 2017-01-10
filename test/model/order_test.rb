@@ -1,8 +1,7 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/model/order'
-require_relative 'fake_maker'
 
-class TestOrder < Minitest::Test
+class OrderTest < Minitest::Test
   attr_reader :order, :drink, :user
 
   def setup

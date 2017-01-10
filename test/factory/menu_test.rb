@@ -1,9 +1,9 @@
-require "minitest/autorun"
+require 'test_helper'
 require_relative '../../lib/factory/menu'
 require_relative '../../lib/model/menu_item'
-require_relative '../json_sample'
 
-class TestMenu< Minitest::Test
+
+class MenuTest< Minitest::Test
   attr_reader :menu
 
   def setup
