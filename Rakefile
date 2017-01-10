@@ -29,6 +29,8 @@ end
 
 require 'rake/testtask'
 
+
+desc "Run Tests"
 Rake::TestTask.new(:test) do |test|
   test.libs << 'test'
 
@@ -36,5 +38,3 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-desc "Run Tests"
-task :default => :test
