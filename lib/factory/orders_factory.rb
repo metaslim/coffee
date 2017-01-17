@@ -9,17 +9,16 @@ class OrdersFactory < Factory
     private
 
     def generate(json)
-      orders = {}
+      orders = []
 
       parse(json) do |order|
         user = order['user']
         drink_name = order['drink']
         drink_size = order['size']
 
-        orders[user] = [] if orders[user].nil?
-        orders[user] << Order.new(
-          User.new(user),
-          Drink.new(drink_name, drink_size)
+        orders << Order.new(
+          User.create(user),
+          Drink.create(drink_name, drink_size)
         )
       end
       orders

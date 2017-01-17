@@ -1,6 +1,34 @@
 class User
   attr_reader :name, :order_total, :payment_total, :balance
 
+  @registry = {}
+
+  class << self
+    def create(name)
+      @registry[name] || new(name).register
+    end
+
+    def to_hash
+      @registry.inject([]) do |array, user|
+        user = user[1]
+        array << {
+          user: user.name,
+          order_total: user.order_total,
+          payment_total: user.payment_total,
+          balance: user.balance
+        }
+      end
+    end
+
+    def registry
+      @registry
+    end
+
+    def reset_registry
+      @registry = {}
+    end
+  end
+
   def initialize(name)
     @name = name
     @order_total = 0
@@ -22,15 +50,12 @@ class User
     @balance = (order_total - payment_total)
   end
 
-  def to_hash
-    instance_variables.inject({}) do |hash, var|
-      hash[var.to_s.delete("@").sub('name','user')] = instance_variable_get(var)
-      hash
-    end
-  end
-
   def get_price_from(menu, order)
     menu_item = order.drink
     menu[menu_item.id].price
+  end
+
+  def register
+    self.class.registry[name] = self
   end
 end
