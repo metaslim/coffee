@@ -6,7 +6,7 @@ class UserTest < Minitest::Test
 
   def setup
     @user_name = "welly"
-    @user = User.new(user_name)
+    @user = User.create(user_name)
   end
 
   def test_object_constructed

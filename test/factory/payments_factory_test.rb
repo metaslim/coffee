@@ -10,19 +10,16 @@ class PaymentsFactoryTest < Minitest::Test
   end
 
   def test_payments_is_correct_size
-    assert_equal 3, payments.size
+    assert_equal 4, payments.size
   end
 
   def test_rochelle_has_correct_amount
-    assert_equal 4.50, payments["rochelle"].first.amount
+    assert_equal 4.50, payments.select {|payment| payment.user.name == "rochelle"}.first.amount
   end
 
-  def test_welly_has_not_paid
-    assert_nil payments["welly"]
-  end
 
   def test_item_is_payment
-    assert_instance_of Payment, payments["rochelle"].first
+    assert_instance_of Payment, payments.first
   end
 
   def test_payments_with_wrong_json

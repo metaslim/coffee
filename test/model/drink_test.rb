@@ -8,7 +8,7 @@ class DrinkTest < Minitest::Test
     @drink_name = "mocha"
     @size = "large"
     @id = "#{size}_#{drink_name}"
-    @drink = Drink.new(drink_name, size)
+    @drink = Drink.create(drink_name, size)
   end
 
   def test_object_constructed
