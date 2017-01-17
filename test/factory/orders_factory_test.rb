@@ -15,17 +15,22 @@ class OrdersFactoryTest < Minitest::Test
   end
 
   def test_coach_has_2_orders
-    assert_equal 2, orders.select {|order| order.user.name == "coach"}.size
+    assert_equal 2,
+      orders.select {|order| order.user.name == "coach"}.size
   end
 
   def test_coach_ordered_medium_long_black
-    assert_equal "medium", orders.select {|order| order.user.name == "coach"}.first.drink.size
-    assert_equal "long black", orders.select {|order| order.user.name == "coach"}.first.drink.drink_name
+    assert_equal "medium",
+      orders.select {|order| order.user.name == "coach"}.first.drink.size
+    assert_equal "long black",
+      orders.select {|order| order.user.name == "coach"}.first.drink.drink_name
   end
 
   def test_coach_ordered_large_flat_white
-    assert_equal "large", orders.select {|order| order.user.name == "coach"}.last.drink.size
-    assert_equal "flat white", orders.select {|order| order.user.name == "coach"}.last.drink.drink_name
+    assert_equal "large",
+      orders.select {|order| order.user.name == "coach"}.last.drink.size
+    assert_equal "flat white",
+      orders.select {|order| order.user.name == "coach"}.last.drink.drink_name
   end
 
 

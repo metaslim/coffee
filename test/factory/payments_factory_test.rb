@@ -14,7 +14,8 @@ class PaymentsFactoryTest < Minitest::Test
   end
 
   def test_rochelle_has_correct_amount
-    assert_equal 4.50, payments.select {|payment| payment.user.name == "rochelle"}.first.amount
+    assert_equal 4.50,
+      payments.select {|payment| payment.user.name == "rochelle"}.first.amount
   end
 
 
